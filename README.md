@@ -4,6 +4,7 @@
 # How to open?
 
 **1)** In blogServer folder, open the application.properities file inside the resources folder and change the database configuration based on your database
+
 **2)** After that first run the blogServer for backend server by running the BlogServerApplication and then run the blogWeb for frontend by typing 'npm run' in the terminal. (i used intelliJ for running backend and Visual Studio Code for frontend)
 
 # Pages
