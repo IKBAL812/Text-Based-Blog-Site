@@ -14,9 +14,7 @@
 **login:** This page lets you log in to the site with the data in the customer table
 
 **view-all:** This is the main page of the server. You can either log in to see this page or log in anonymousle but you will not be able to create posts if you dont have an account. 
-
 If there are any posts in the server, this page will list them.
-
 If there are not, it will display a blank page saying 'there are no posts yet'
 
 **create-post:** This page is only accesible when you have an account. This page lets you add a new post to the database so that it will show on the main page.
