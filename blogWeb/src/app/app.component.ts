@@ -87,8 +87,6 @@ export class AppComponent implements OnInit {
   }
 
   adminMenu() {
-    this.router.navigateByUrl("/admin-menu").then(() => {
-      window.location.reload();
-    });
+    this.router.navigateByUrl('/admin-menu');
   }
 }

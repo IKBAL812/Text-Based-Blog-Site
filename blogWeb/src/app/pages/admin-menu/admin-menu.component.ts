@@ -30,7 +30,20 @@ export class AdminMenuComponent {
   ) { }
 
   ngOnInit() {
-
+    const jwtToken = this.cookieService.get('jwt');
+    if (!jwtToken) {
+      this.router.navigateByUrl('/login')
+      this.matSnackBar.open("You need to be logged in as admin to access this!", "Ok")
+    }
+    const decodedToken: any = jwtDecode(jwtToken);
+    this.email = decodedToken.sub;
+    this.jwtService.getUserByEmail(this.email).subscribe(res => {
+      this.userData = res;
+      if (this.userData.role !== "admin") {
+        this.router.navigateByUrl('/view-all')
+        this.matSnackBar.open("You need to be logged in as admin to access this!", "Ok")
+      }
+    })
     this.getAllUsers();
   }
 
@@ -49,6 +62,7 @@ export class AdminMenuComponent {
 
     })
   }
+
 
   //opening dialog for adding new admin
   addAdmin() {
