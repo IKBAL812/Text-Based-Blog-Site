@@ -9,6 +9,7 @@ import org.springframework.boot.autoconfigure.security.servlet.SecurityAutoConfi
 public class BlogServerApplication {
 
 	public static void main(String[] args) {
+
 		SpringApplication.run(BlogServerApplication.class, args);
 	}
 

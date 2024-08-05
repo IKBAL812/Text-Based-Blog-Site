@@ -17,6 +17,7 @@ import org.springframework.web.filter.OncePerRequestFilter;
 
 import java.io.IOException;
 
+//jwt authentication
 @Component
 public class JwtRequestFilter extends OncePerRequestFilter {
 
@@ -24,19 +25,19 @@ public class JwtRequestFilter extends OncePerRequestFilter {
     private final JwtUtil jwtUtil;
 
     @Autowired
-    public JwtRequestFilter(@Lazy CustomerService customerService, JwtUtil jwtUtil) {
+    public JwtRequestFilter(@Lazy CustomerService customerService, JwtUtil jwtUtil) {//used lazy because it caused dependency circle
         this.customerService = customerService;
         this.jwtUtil = jwtUtil;
     }
 
     @Override
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) throws ServletException, IOException {
-        String authHeader = request.getHeader("Authorization");
+        String authHeader = request.getHeader("Authorization"); // get the bearer token
         String token = null;
         String username = null;
 
         if (authHeader != null && authHeader.startsWith("Bearer ")) {
-            token = authHeader.substring(7);
+            token = authHeader.substring(7);//select the first 7 digits (the email)
             username = jwtUtil.extractUsername(token);
         }
 

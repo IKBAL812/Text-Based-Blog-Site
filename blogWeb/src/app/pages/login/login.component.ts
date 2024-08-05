@@ -33,6 +33,7 @@ export class LoginComponent implements OnInit {
     });
   }
 
+  //option to log in anonymously
   anonLogin() {
     this.cookieService.deleteAll();
     this.router.navigateByUrl("/view-all").then(() => {
@@ -42,16 +43,14 @@ export class LoginComponent implements OnInit {
   login() {
     const data = this.loginForm.value;
 
-
-
     this.jwtService.login(data).subscribe(res => {
       this.snackbar.open("Log in successful!", "Ok");
       const jwtToken = res.jwtToken;
-      this.cookieService.deleteAll();
+      this.cookieService.deleteAll();//deleting all cookie data in case there is a previos jwt
       this.router.navigateByUrl("/view-all").then(() => {
         window.location.reload();
       });
-      this.cookieService.set('jwt', jwtToken);
+      this.cookieService.set('jwt', jwtToken);//putting the new jwt
     }, error => {
       if (error.status === 404 || error.status === 401) {
         this.snackbar.open("Email or password is wrong!", "Ok");

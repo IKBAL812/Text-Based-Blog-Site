@@ -35,7 +35,7 @@ import { ForgotPasswordComponent } from './pages/forgot-password/forgot-password
     AdminMenuComponent,
     AddAdminComponent,
     DeleteUserComponent,
-    ForgotPasswordComponent
+    ForgotPasswordComponent,
   ],
   imports: [
     BrowserModule,

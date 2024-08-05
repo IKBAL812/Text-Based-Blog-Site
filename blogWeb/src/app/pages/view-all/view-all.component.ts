@@ -20,6 +20,7 @@ export class ViewAllComponent {
     this.getAllPosts();
   }
 
+
   getAllPosts() {
     this.postService.getAllPosts().subscribe(res => {
       this.allPosts = res;

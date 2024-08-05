@@ -5,6 +5,7 @@ import { Router } from '@angular/router';
 import { DialogWindowComponent } from '../dialog-window/dialog-window.component';
 import { AdminService } from '../../service/admin.service';
 
+//dialog for deleting a user
 @Component({
   selector: 'app-delete-user',
   templateUrl: './delete-user.component.html',
@@ -18,6 +19,7 @@ export class DeleteUserComponent {
     private matSnackBar: MatSnackBar,
     public dialog: MatDialog,
     public dialogRef: MatDialogRef<DialogWindowComponent>,
+    //getting user id data from the page that called this
     @Inject(MAT_DIALOG_DATA) public data: any) { }
 
   ngOnInit() {

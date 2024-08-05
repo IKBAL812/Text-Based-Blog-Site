@@ -7,6 +7,7 @@ import { jwtDecode } from 'jwt-decode';
 import { CookieService } from 'ngx-cookie-service';
 import { JwtService } from '../../service/jwt.service';
 
+//page for creating a post
 @Component({
   selector: 'app-create-post',
   templateUrl: './create-post.component.html',
@@ -35,6 +36,7 @@ export class CreatePostComponent implements OnInit {
     });
   }
 
+  //checking the jwt token 
   checkToken() {
     const jwtToken = this.cookieService.get('jwt');
     if (!jwtToken) {

@@ -13,6 +13,7 @@ import { Router } from '@angular/router';
 export class RegisterComponent {
   registerForm!: FormGroup;
 
+  //hide/unhide checker
   hidePassword = true;
   hideConfirmPassword = true;
 
@@ -31,6 +32,7 @@ export class RegisterComponent {
     }, { validator: this.passwordMathValidator });
   }
 
+  //password/confirmpassword checker
   passwordMathValidator(formGroup: FormGroup) {
     const password = formGroup.get('password')?.value;
     const confirmPassword = formGroup.get('confirmPassword')?.value;
@@ -43,13 +45,13 @@ export class RegisterComponent {
   }
   register() {
     const { confirmPassword, ...data } = this.registerForm.value;
-    data.role = "user";
+    data.role = "user";//set the role of the user
 
     this.jwtService.register(data).subscribe(res => {
       this.snackbar.open("Sign up successfull!", "Ok");
       this.router.navigateByUrl("/login");
     }, error => {
-      if (error.status === 201) { // Handle 201 Created as a success case
+      if (error.status === 201) { // Handle 201 Created as a success case since it is understood as error
         this.snackbar.open("Sign up successful!", "Ok");
         this.router.navigateByUrl("/login");
       } else {

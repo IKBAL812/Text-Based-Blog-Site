@@ -15,6 +15,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.web.bind.annotation.*;
 
+//login functions (no need to be authenticated since user is not logged in)
 @RestController
 @RequestMapping("/login")
 @CrossOrigin(origins = "*")

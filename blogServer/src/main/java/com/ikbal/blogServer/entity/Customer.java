@@ -5,6 +5,7 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 
+//customer entity for the database(did not use lombok in this for more security)
 @Entity
 public class Customer {
 
@@ -20,7 +21,7 @@ public class Customer {
 
     private String role;
 
-    private String resetCode;
+
 
     public String getEmail() {
         return email;
@@ -58,11 +59,4 @@ public class Customer {
         this.role = role;
     }
 
-    public String getResetCode() {
-        return resetCode;
-    }
-
-    public void setResetCode(String resetCode) {
-        this.resetCode = resetCode;
-    }
 }

@@ -29,12 +29,11 @@ public class AuthServiceImpl implements AuthService {
         }
 
         Customer customer = new Customer();
-        BeanUtils.copyProperties(signupRequest, customer);
+        BeanUtils.copyProperties(signupRequest, customer);//copy the properties of sign up request to customer
 
         //Hash the password before saving
-        String hashedPassword = passwordEncoder.encode(signupRequest.getPassword());
+        String hashedPassword = passwordEncoder.encode(signupRequest.getPassword());//hash the password
         customer.setPassword(hashedPassword);
-        customer.setResetCode("null");
         customerRepository.save(customer);
         return true;
     }

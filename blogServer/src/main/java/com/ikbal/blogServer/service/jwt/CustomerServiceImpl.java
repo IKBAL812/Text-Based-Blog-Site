@@ -23,8 +23,6 @@ public class CustomerServiceImpl implements UserDetailsService,CustomerService {
 
     private final PasswordEncoder passwordEncoder;
 
-
-
     @Autowired
     public CustomerServiceImpl(CustomerRepository customerRepository, PasswordEncoder passwordEncoder) {
         this.customerRepository = customerRepository;
@@ -70,7 +68,6 @@ public class CustomerServiceImpl implements UserDetailsService,CustomerService {
 
         String encodedPassword = passwordEncoder.encode(newPassword);
         customer.setPassword(encodedPassword);
-        customer.setResetCode("null");
         return customerRepository.save(customer);
     }
 }

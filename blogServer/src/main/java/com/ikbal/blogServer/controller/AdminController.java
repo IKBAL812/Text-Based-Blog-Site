@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+//admin commands (need to be authenticated to use them)
 @RestController
 @RequestMapping("/admin")
 @CrossOrigin(origins = "*")
@@ -24,6 +25,7 @@ public class AdminController {
     }
 
 
+    //gets all users
     @GetMapping("/users")
     public ResponseEntity<List<Customer>> getAllUsers(){
         try{
@@ -33,6 +35,7 @@ public class AdminController {
         }
     }
 
+    //delete a user
     @DeleteMapping("/delete/{userId}")
     public ResponseEntity<?> deleteCustomer(@PathVariable Long userId){
         try {

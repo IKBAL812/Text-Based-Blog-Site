@@ -1,5 +1,6 @@
 package com.ikbal.blogServer.dto;
 
+//a response dto that responds with the jwt token on login
 public class LoginResponse {
 
     private String jwtToken;

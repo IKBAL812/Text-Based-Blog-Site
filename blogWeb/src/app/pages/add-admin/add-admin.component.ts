@@ -4,14 +4,17 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
 import { JwtService } from '../../service/jwt.service';
 
+//dialog page for adding new admins
 @Component({
   selector: 'app-add-admin',
   templateUrl: './add-admin.component.html',
   styleUrl: './add-admin.component.scss'
 })
 export class AddAdminComponent {
+
   registerForm!: FormGroup;
 
+  //to check hidden/unhidden state
   hidePassword = true;
   hideConfirmPassword = true;
 
@@ -30,6 +33,7 @@ export class AddAdminComponent {
     }, { validator: this.passwordMathValidator });
   }
 
+  //validation checker for password and confirm password to be the same
   passwordMathValidator(formGroup: FormGroup) {
     const password = formGroup.get('password')?.value;
     const confirmPassword = formGroup.get('confirmPassword')?.value;
@@ -40,9 +44,11 @@ export class AddAdminComponent {
       formGroup.get('confirmPassword')?.setErrors(null);
     }
   }
+
+  //adding admin to system
   register() {
-    const { confirmPassword, ...data } = this.registerForm.value;
-    data.role = "admin";
+    const { confirmPassword, ...data } = this.registerForm.value;//dont put the confirmpassword 
+    data.role = "admin";//declearing role manually
 
     this.jwtService.register(data).subscribe(res => {
       this.snackbar.open("Admin added successfully,refresh the page!", "Ok");
@@ -50,7 +56,7 @@ export class AddAdminComponent {
         window.location.reload();
       });
     }, error => {
-      if (error.status === 201) { // Handle 201 Created as a success case
+      if (error.status === 201) { // Handle 201 Created as a success case since it detects it as a error
         this.snackbar.open("Admin added successfully,refresh the page!", "Ok");
       } else {
         console.error("Error: ", error);
@@ -58,6 +64,8 @@ export class AddAdminComponent {
       }
     })
   }
+
+  //toggle visibilities for password and confirm password
   togglePasswordVisibility() {
     this.hidePassword = !this.hidePassword;
   }

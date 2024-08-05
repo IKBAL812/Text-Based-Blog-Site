@@ -4,6 +4,7 @@ package com.ikbal.blogServer.entity;
 import jakarta.persistence.*;
 import lombok.Data;
 
+//post entity for the database
 @Entity
 @Data
 public class Post {

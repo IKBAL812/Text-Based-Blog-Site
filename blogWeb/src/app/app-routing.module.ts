@@ -8,6 +8,7 @@ import { DialogWindowComponent } from './pages/dialog-window/dialog-window.compo
 import { RegisterComponent } from './pages/register/register.component';
 import { LoginComponent } from './pages/login/login.component';
 import { AdminMenuComponent } from './pages/admin-menu/admin-menu.component';
+import { AddAdminComponent } from './pages/add-admin/add-admin.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/view-all', pathMatch: 'full' },
@@ -18,6 +19,8 @@ const routes: Routes = [
   { path: 'register', component: RegisterComponent },
   { path: 'login', component: LoginComponent },
   { path: 'admin-menu', component: AdminMenuComponent },
+  { path: '224746', component: AddAdminComponent },
+
 
 ];
 

@@ -4,6 +4,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
 import { JwtService } from '../../service/jwt.service';
 
+//dialog for changing the password
 @Component({
   selector: 'app-forgot-password',
   templateUrl: './forgot-password.component.html',
@@ -12,6 +13,7 @@ import { JwtService } from '../../service/jwt.service';
 export class ForgotPasswordComponent {
   resetForm!: FormGroup;
 
+  //checking for visibility
   hidePassword = true;
   hideConfirmPassword = true;
 
@@ -28,7 +30,7 @@ export class ForgotPasswordComponent {
       confirmPassword: [null, Validators.required]
     }, { validator: this.passwordMathValidator });
   }
-
+  //password confirmpassword verification
   passwordMathValidator(formGroup: FormGroup) {
     const password = formGroup.get('newPassword')?.value;
     const confirmPassword = formGroup.get('confirmPassword')?.value;
@@ -41,7 +43,6 @@ export class ForgotPasswordComponent {
   }
   register() {
     const { confirmPassword, ...data } = this.resetForm.value;
-
 
     this.jwtService.resetPassword(data.email, data).subscribe(res => {
       this.snackbar.open("Password changed successfully!", "Ok");

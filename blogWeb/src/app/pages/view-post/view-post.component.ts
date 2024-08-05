@@ -44,6 +44,7 @@ export class ViewPostComponent {
       this.matSnackBar.open("Something went wrong!", "Ok")
     })
   }
+  //open the dialog for deleting a post
   openDeleteDialog(): void {
     const dialogRef = this.dialog.open(DialogWindowComponent, {
       width: '300px',

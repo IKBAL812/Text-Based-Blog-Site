@@ -1,5 +1,6 @@
 package com.ikbal.blogServer.dto;
 
+//a sign-up request dto that transfers the sign-up details
 public class SignupRequest {
     private String email;
 

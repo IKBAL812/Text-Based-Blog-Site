@@ -1,5 +1,6 @@
 package com.ikbal.blogServer.dto;
 
+//a request dto that transfers new password
 public class ChangeRequest {
     private String newPassword;
 

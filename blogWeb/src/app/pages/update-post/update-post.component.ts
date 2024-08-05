@@ -32,6 +32,7 @@ export class UpdatePostComponent {
   updatePost() {
     const data = {
       ...this.postForm.value,
+      //adding the needed data
       date: this.postData.date,
       author: this.postData.author
     }

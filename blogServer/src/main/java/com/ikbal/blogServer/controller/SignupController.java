@@ -11,6 +11,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.web.bind.annotation.*;
 
+//sign up functions (no need to be authenticated since user does not have an account)
 @RestController
 @RequestMapping("/signup")
 @CrossOrigin(origins = "*")

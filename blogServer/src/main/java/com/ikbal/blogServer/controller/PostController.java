@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+//post functions (no need to be authenticated to use them since users can look at posts anonymously)
 @RestController
 @RequestMapping("/api/posts")
 @CrossOrigin(origins = "*")

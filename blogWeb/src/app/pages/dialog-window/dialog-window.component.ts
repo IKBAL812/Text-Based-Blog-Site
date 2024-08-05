@@ -4,6 +4,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
 import { PostService } from '../../service/post.service';
 
+//dialog for deleting a post
 @Component({
   selector: 'app-dialog-window',
   templateUrl: './dialog-window.component.html',
@@ -18,6 +19,7 @@ export class DialogWindowComponent {
     private matSnackBar: MatSnackBar,
     public dialog: MatDialog,
     public dialogRef: MatDialogRef<DialogWindowComponent>,
+    //getting the post id from the page that called this
     @Inject(MAT_DIALOG_DATA) public data: any) { }
 
   ngOnInit() {

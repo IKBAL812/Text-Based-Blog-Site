@@ -1,5 +1,6 @@
 package com.ikbal.blogServer.dto;
 
+//a request dto that transfers login details
 public class LoginRequest {
 
     private String email;

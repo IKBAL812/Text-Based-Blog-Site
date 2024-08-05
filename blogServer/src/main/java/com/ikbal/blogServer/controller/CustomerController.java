@@ -11,6 +11,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.web.bind.annotation.*;
 
+//user commands (need to be authenticated to use them)
 @RestController
 @RequestMapping("/user")
 @CrossOrigin(origins = "*")
@@ -21,6 +22,7 @@ public class CustomerController {
     public CustomerController(CustomerServiceImpl customerService) {
         this.customerService = customerService;
     }
+
 
     @GetMapping("/{userEmail}")
     public ResponseEntity<?> getUserByEmail(@PathVariable String userEmail) {

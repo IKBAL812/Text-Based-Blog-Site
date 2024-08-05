@@ -16,6 +16,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
+//configuration for security
 @Configuration
 @EnableWebSecurity
 @EnableMethodSecurity
@@ -32,8 +33,8 @@ public class WebSecurityConfig {
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http.csrf(AbstractHttpConfigurer::disable)
                 .authorizeHttpRequests(auth -> auth
-                        .requestMatchers("/api/**", "/signup/**","/login","/signup/changePassword/**").permitAll()
-                        .anyRequest().authenticated()
+                        .requestMatchers("/api/**", "/signup/**","/login","/signup/changePassword/**").permitAll()//these parts can be accessed even if user is not anonymous
+                        .anyRequest().authenticated()//any other page must be authenticated
                 )
                 .sessionManagement(session -> session
                         .sessionCreationPolicy(SessionCreationPolicy.STATELESS)
