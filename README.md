@@ -1,5 +1,5 @@
 # Text Based Blog Site
- A text based blog site that has been made with angular 17 material for frontend and spring boot 3.3.2 for backend
+ This is a text based blog site that has been made with angular 17 material for frontend and spring boot 3.3.2 for backend
 
 # How to open?
 
@@ -13,9 +13,13 @@
 
 **login:** This page lets you log in to the site with the data in the customer table
 
-**view-all:** This is the main page of the server. You can either log in to see this page or log in anonymousle but you will not be able to create posts if you dont have an account. 
+**view-all:** This is the main page of the server. You can either log in to see this page or log in anonymousle but you will not be able to create posts if you dont have an account.
+
 If there are any posts in the server, this page will list them.
+
 If there are not, it will display a blank page saying 'there are no posts yet'
+
+**view-post:** When clicked view post on a post, it will be redirected to this page. In this page, you can view the post in detail. Also, if the post has been updated, it will show that on there.
 
 **create-post:** This page is only accesible when you have an account. This page lets you add a new post to the database so that it will show on the main page.
 
@@ -27,4 +31,18 @@ If you are logged in, there will be two buttons. First one is create post, which
 
 This page will list all the users in the database. There is delete user button after each user that lets you delete that user.(you can't delete yourself of course) 
 
-Also there is a button at the top for adding admins that  
+Also there is a button at the top for adding admins that opens a dialog for adding admins
+
+**secret-menu:** This secret menu is accessed by inputting the required password(that you can change in the routers) for adding an admin quickly or if there is no admin in the database that no admin can be added
+
+# Features
+
+**user roles:** There is two roles in site which are user and admin. Users can be added by basically registering and admins can be added from the admin menu or secret menu.
+
+Users can view their own and others' post but they can only edit or delete their posts.
+
+Admins has the users' previliges and also they can delete other people's post but they cant update other people's post.
+
+**reset password:** In the log in screen, there is a reset password button that lets you change the password of a email.(I tried to make a code from email system for security but gmail does not support that feature now so its a very basic one right now, but i will update it if i find a way) 
+
+**anonymous login:** In login screen, you can log in to the system anonymously just to see the posts without creating an account.
