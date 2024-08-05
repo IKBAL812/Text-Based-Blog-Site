@@ -1,0 +1,28 @@
+<div *ngIf="postData;else noPostTemplate" class="card-container">
+    <mat-card>
+        <mat-card-header>
+            <mat-card-title>{{postData.name}}</mat-card-title>
+            <mat-card-subtitle>Posted By: {{postData.author}} | Posted On:
+                {{postData.date.substr(0,16)}} <mat-card-subtitle *ngIf="postData.editDate !== 'null'">Last Edited at:
+                    {{postData.editDate.substr(0,16)}}</mat-card-subtitle></mat-card-subtitle>
+        </mat-card-header>
+        <br>
+        <mat-card-content>
+            {{postData.content}}
+        </mat-card-content>
+        <mat-card-actions>
+            <button *ngIf="userData.id == postData.authorId" mat-raised-button color="primary"
+                style="position: relative;margin-right: 5px;" routerLink="/update-post/{{postData.id}}">Update
+                Post</button>
+            <button *ngIf="userData.id == postData.authorId || userData.role === 'admin'" mat-raised-button color="warn"
+                style="position: absolute;right:10px;" (click)="openDeleteDialog()">Delete
+                Post</button>
+        </mat-card-actions>
+
+    </mat-card>
+</div>
+<ng-template #noPostTemplate>
+    <div class="no-post-container">
+        <p>There is no post with that id!</p>
+    </div>
+</ng-template>

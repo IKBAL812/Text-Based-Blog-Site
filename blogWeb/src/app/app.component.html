@@ -1,0 +1,22 @@
+<mat-toolbar *ngIf="showToolbar" color="primary">
+
+  <span (click)="viewAll()">Blog App</span>
+
+  <span class="example-spacer"></span>
+  <button *ngIf="!isLoggedin" style="margin-right: 10px;" mat-raised-button routerLink="/login">Log In</button>
+
+  <button *ngIf="isLoggedin" mat-raised-button routerLink="/create-post">Create New Post</button>
+
+  <button *ngIf="isLoggedin" mat-icon-button [matMenuTriggerFor]="account" class="profile-button"
+    aria-label="profile button">
+    <mat-icon style="transform: scale(1.5)">account_circle</mat-icon>
+  </button>
+
+</mat-toolbar>
+<mat-menu #account="matMenu">
+  <p style="padding: 10px;">{{userData.name}}</p>
+  <button mat-menu-item (click)="logOut()">Log Out</button>
+  <button *ngIf="userData.role === 'admin'" mat-menu-item (click)="adminMenu()">Admin Menu</button>
+</mat-menu>
+
+<router-outlet></router-outlet>

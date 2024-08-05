@@ -1,0 +1,20 @@
+<mat-card class="center-card">
+    <mat-card-content>
+        <div>
+            <form [formGroup]="postForm">
+                <mat-form-field appearance="fill">
+                    <mat-label>Name</mat-label>
+                    <input matInput formControlName="name">
+                </mat-form-field>
+
+                <mat-form-field appearance="fill">
+                    <mat-label>Content</mat-label>
+                    <textarea matInput rows="5" formControlName="content"></textarea>
+                </mat-form-field>
+
+                <button mat-raised-button color="primary" style="float: right;" [disabled]="!postForm.valid"
+                    (click)="createPost()">Create New Post</button>
+            </form>
+        </div>
+    </mat-card-content>
+</mat-card>

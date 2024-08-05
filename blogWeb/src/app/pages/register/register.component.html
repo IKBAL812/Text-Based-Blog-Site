@@ -1,0 +1,43 @@
+<mat-card class="center-card">
+    <mat-icon style="margin: auto; margin-bottom: 30px; transform: scale(3);">account_box</mat-icon>
+    <p style="margin: auto; margin-bottom: 30px; transform: scale(2)">REGISTER</p>
+    <mat-card-content>
+        <div>
+            <form [formGroup]="registerForm">
+                <mat-form-field appearance="fill">
+                    <mat-label>Name</mat-label>
+                    <input matInput formControlName="name">
+                </mat-form-field>
+
+                <mat-form-field appearance="fill">
+                    <mat-label>Email</mat-label>
+                    <input matInput formControlName="email">
+                </mat-form-field>
+
+                <mat-form-field appearance="fill">
+                    <mat-label>Password</mat-label>
+                    <input matInput [type]="hidePassword ? 'password' : 'text'" formControlName="password">
+                    <button mat-icon-button matSuffix (click)="togglePasswordVisibility()" tabindex="-1">
+                        <mat-icon>{{ hidePassword ? 'visibility_off' : 'visibility' }}</mat-icon>
+                    </button>
+                </mat-form-field>
+
+                <mat-form-field appearance="fill">
+                    <mat-label>Confirm Password</mat-label>
+                    <input matInput [type]="hideConfirmPassword ? 'password' : 'text'"
+                        formControlName="confirmPassword">
+                    <button mat-icon-button matSuffix (click)="toggleConfirmPasswordVisibility()" tabindex="-1">
+                        <mat-icon>{{ hideConfirmPassword ? 'visibility_off' : 'visibility' }}</mat-icon>
+                    </button>
+                </mat-form-field>
+
+                <p style="margin: auto;">Already have an account?
+                    <button mat-raised-button style="transform: scale(0.8)" color="primary" routerLink="/login">Log
+                        in</button>
+                </p>
+                <button mat-raised-button color="primary" style="float: right;" [disabled]="!registerForm.valid"
+                    (click)="register()" cdkFocusInitial>Register</button>
+            </form>
+        </div>
+    </mat-card-content>
+</mat-card>

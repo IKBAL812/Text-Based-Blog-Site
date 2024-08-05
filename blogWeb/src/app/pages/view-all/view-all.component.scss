@@ -1,0 +1,30 @@
+.card-container {
+    margin: 16px;
+    margin-left: 200px;
+    margin-right: 200px;
+    max-width: 100%;
+    padding-bottom: 30px;
+}
+
+mat-card {
+    padding: 10px;
+    margin-bottom: 16px;
+}
+
+mat-card-footer {
+    margin-left: 20px;
+}
+
+mat-card-content {
+    margin-top: 10px;
+    white-space: pre-wrap;
+}
+
+.no-posts-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    font-size: 24px;
+    color: gray;
+}
