@@ -33,7 +33,14 @@ export class DialogWindowComponent {
         this.router.navigateByUrl('/view-all');
       },
       (error) => {
-        this.matSnackBar.open('Something went wrong!', 'Ok');
+        if (error.status === 200) { // Handle 201 Created as a success case since it detects it as a error
+          this.matSnackBar.open('Post Deleted Successfully!', 'Ok');
+          this.router.navigateByUrl('/view-all');
+        }
+        else {
+          this.matSnackBar.open('Something went wrong!', 'Ok');
+        }
+
       }
     );
   }

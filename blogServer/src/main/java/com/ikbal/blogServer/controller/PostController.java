@@ -1,11 +1,15 @@
 package com.ikbal.blogServer.controller;
 
+import com.ikbal.blogServer.entity.Customer;
 import com.ikbal.blogServer.entity.Post;
 import com.ikbal.blogServer.service.PostService;
+import com.ikbal.blogServer.service.jwt.CustomerServiceImpl;
+import com.ikbal.blogServer.utils.JwtUtil;
 import jakarta.persistence.EntityNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -19,7 +23,14 @@ public class PostController {
     @Autowired
     private PostService postService;
 
-    @PostMapping
+    @Autowired
+    private CustomerServiceImpl customerService;
+
+    @Autowired
+    private JwtUtil jwtUtil;
+
+
+    @PostMapping("/create")
     public ResponseEntity<?> createPost(@RequestBody Post post) {
         try{
             Post createdPost = postService.savePost(post);
@@ -50,22 +61,46 @@ public class PostController {
     }
 
     @PutMapping("/update/{postId}")
-    public ResponseEntity<?> updatePost(@PathVariable Long postId, @RequestBody Post post) {
-        try{
+    public ResponseEntity<?> updatePost(@PathVariable Long postId, @RequestBody Post post, @RequestHeader("Authorization") String token) {
+        try {
+            String jwtToken = token.replace("Bearer ", "");
+            String email = jwtUtil.extractUsername(jwtToken);
+            Customer customer = customerService.getUserByEmail(email);
+
+            Post existingPost = postService.getPostById(postId);
+            if (!existingPost.getAuthorId().equals(customer.getId())) {
+                return ResponseEntity.status(HttpStatus.FORBIDDEN)
+                        .body("You are not authorized to update this post");
+            }
+
             Post updatedPost = postService.updatePost(postId, post);
             return ResponseEntity.ok(updatedPost);
 
-        }
-        catch (Exception e) {
-            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
+        } catch (UsernameNotFoundException e) {
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Invalid token");
+        } catch (EntityNotFoundException e) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(e.getMessage());
         }
     }
 
     @DeleteMapping("/delete/{postId}")
-    public ResponseEntity<?> deletePost(@PathVariable Long postId) {
+    public ResponseEntity<?> deletePost(@PathVariable Long postId, @RequestHeader("Authorization") String token) {
         try {
+            String jwtToken = token.replace("Bearer ", "");
+            String email = jwtUtil.extractUsername(jwtToken);
+            Customer customer = customerService.getUserByEmail(email);
+
+            Post existingPost = postService.getPostById(postId);
+            if (!existingPost.getAuthorId().equals(customer.getId()) && customer.getRole() != "admin") {
+                return ResponseEntity.status(HttpStatus.FORBIDDEN)
+                        .body("You are not authorized to delete this post");
+            }
+
             postService.deletePost(postId);
-            return ResponseEntity.ok().build();
+            return ResponseEntity.ok("Post deleted successfully");
+
+        } catch (UsernameNotFoundException e) {
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Invalid token");
         } catch (EntityNotFoundException e) {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body(e.getMessage());
         }

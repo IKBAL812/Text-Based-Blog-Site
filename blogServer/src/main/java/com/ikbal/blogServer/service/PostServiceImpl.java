@@ -16,6 +16,7 @@ public class PostServiceImpl implements PostService {
     @Autowired
     private PostRepository postRepository;
 
+
     public Post savePost(Post post) {
         post.setDate(String.valueOf(new Date()));
         post.setEditDate("null");

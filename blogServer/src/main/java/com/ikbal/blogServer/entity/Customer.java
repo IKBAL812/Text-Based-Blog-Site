@@ -21,8 +21,6 @@ public class Customer {
 
     private String role;
 
-
-
     public String getEmail() {
         return email;
     }

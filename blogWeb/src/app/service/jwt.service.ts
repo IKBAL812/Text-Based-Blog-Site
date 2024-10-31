@@ -31,14 +31,15 @@ export class JwtService {
     return this.http.put(BASIC_URL + `signup/changePassword/${email}`, data);
   }
 
-  private createAuthorizationHeader() {
+  private createAuthorizationHeader(): HttpHeaders {
     const jwtToken = this.cookieService.get('jwt');
-    if (jwtToken) {
-      return new HttpHeaders().set(
-        "Authorization", "Bearer " + jwtToken
-      )
-    }
-    return;
+    return jwtToken
+      ? new HttpHeaders().set("Authorization", "Bearer " + jwtToken)
+      : new HttpHeaders();
+  }
+
+  getAuthorizationHeader(): HttpHeaders {
+    return this.createAuthorizationHeader();
   }
 
 }

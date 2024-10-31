@@ -20,7 +20,7 @@ public class Post {
 
     private String author;
 
-    private String authorId;
+    private Long authorId;
 
     private String date;
 

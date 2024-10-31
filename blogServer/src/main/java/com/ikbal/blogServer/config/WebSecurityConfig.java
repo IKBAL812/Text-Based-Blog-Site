@@ -33,7 +33,8 @@ public class WebSecurityConfig {
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http.csrf(AbstractHttpConfigurer::disable)
                 .authorizeHttpRequests(auth -> auth
-                        .requestMatchers("/api/**", "/signup/**","/login","/signup/changePassword/**").permitAll()//these parts can be accessed even if user is not anonymous
+                        .requestMatchers("/api/posts", "/api/posts/{postId}", "/signup/**","/login","/signup/changePassword/**").permitAll()//these parts can be accessed even if user is not anonymous
+                        .requestMatchers("/api/posts/update", "/api/posts/delete", "api/posts/create").authenticated()
                         .anyRequest().authenticated()//any other page must be authenticated
                 )
                 .sessionManagement(session -> session
