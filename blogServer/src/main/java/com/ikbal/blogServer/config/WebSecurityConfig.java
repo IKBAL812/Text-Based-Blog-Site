@@ -1,6 +1,7 @@
 package com.ikbal.blogServer.config;
 
 import com.ikbal.blogServer.filters.JwtRequestFilter;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
