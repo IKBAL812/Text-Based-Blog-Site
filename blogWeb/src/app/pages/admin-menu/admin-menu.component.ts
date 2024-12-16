@@ -46,8 +46,6 @@ export class AdminMenuComponent {
     })
     this.getAllUsers();
   }
-
-
   //getting all the user data
   getAllUsers() {
     this.adminService.getAllUsers().subscribe(res => {
@@ -62,8 +60,6 @@ export class AdminMenuComponent {
 
     })
   }
-
-
   //opening dialog for adding new admin
   addAdmin() {
 
@@ -72,7 +68,6 @@ export class AdminMenuComponent {
       height: '600px',// Increase the height of the dialog
     });
   }
-
   //opening dialog for deleting a user
   deleteUser(userId: number) {
 

@@ -64,7 +64,7 @@ export class AddAdminComponent {
       }
     })
   }
-
+  //dones
   //toggle visibilities for password and confirm password
   togglePasswordVisibility() {
     this.hidePassword = !this.hidePassword;

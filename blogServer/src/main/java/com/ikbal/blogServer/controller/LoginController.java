@@ -3,7 +3,6 @@ package com.ikbal.blogServer.controller;
 import com.ikbal.blogServer.dto.LoginRequest;
 import com.ikbal.blogServer.dto.LoginResponse;
 import com.ikbal.blogServer.service.jwt.CustomerService;
-import com.ikbal.blogServer.service.jwt.CustomerServiceImpl;
 import com.ikbal.blogServer.utils.JwtUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -52,7 +51,6 @@ public class LoginController {
 
         String jwt = jwtUtil.generateToken(userDetails.getUsername());
 
-        //Additional logic can be added here when needed
 
         return ResponseEntity.ok(new LoginResponse(jwt));
     }

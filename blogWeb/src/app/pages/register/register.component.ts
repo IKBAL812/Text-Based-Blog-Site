@@ -3,7 +3,7 @@ import { JwtService } from '../../service/jwt.service';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
-
+//done
 
 @Component({
   selector: 'app-register',

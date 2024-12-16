@@ -63,3 +63,4 @@ export class ForgotPasswordComponent {
     this.hideConfirmPassword = !this.hideConfirmPassword;
   }
 }
+//done

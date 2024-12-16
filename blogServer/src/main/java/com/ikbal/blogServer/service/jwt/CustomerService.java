@@ -16,5 +16,4 @@ public interface CustomerService {
 
     UserDetails loadUserByUsername(String username);
 
-
 }

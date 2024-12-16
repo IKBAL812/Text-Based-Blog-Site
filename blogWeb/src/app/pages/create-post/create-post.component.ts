@@ -36,29 +36,6 @@ export class CreatePostComponent implements OnInit {
     });
   }
 
-  //checking the jwt token 
-  checkToken() {
-    const jwtToken = this.cookieService.get('jwt');
-    if (!jwtToken) {
-      this.redirectToLogin();
-      return;
-    }
-
-    try {
-      const decodedToken: any = jwtDecode(jwtToken);
-      const currentTime = Date.now() / 1000; // Current time in seconds
-      if (decodedToken.exp < currentTime) {
-        // Token expired
-        this.redirectToLogin();
-      } else {
-        this.email = decodedToken.sub; // Extract email from token
-      }
-    } catch (error) {
-      console.error('Error decoding token:', error);
-      this.redirectToLogin();
-    }
-  }
-
   redirectToLogin() {
     this.cookieService.delete('jwt');
     this.snackbar.open('You need to be logged in to create a post!', 'Ok');
@@ -91,5 +68,28 @@ export class CreatePostComponent implements OnInit {
     }, error => {
       this.snackbar.open('Something went wrong!', 'Ok');
     });
+  }
+
+  //checking the jwt token 
+  checkToken() {
+    const jwtToken = this.cookieService.get('jwt');
+    if (!jwtToken) {
+      this.redirectToLogin();
+      return;
+    }
+
+    try {
+      const decodedToken: any = jwtDecode(jwtToken);
+      const currentTime = Date.now() / 1000; // Current time in seconds
+      if (decodedToken.exp < currentTime) {
+        // Token expired
+        this.redirectToLogin();
+      } else {
+        this.email = decodedToken.sub; // Extract email from token
+      }
+    } catch (error) {
+      console.error('Error decoding token:', error);
+      this.redirectToLogin();
+    }
   }
 }

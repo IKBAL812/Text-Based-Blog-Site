@@ -13,6 +13,7 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Objects;
 
 //post functions (no need to be authenticated to use them since users can look at posts anonymously)
 @RestController
@@ -91,7 +92,7 @@ public class PostController {
             Customer customer = customerService.getUserByEmail(email);
 
             Post existingPost = postService.getPostById(postId);
-            if (!existingPost.getAuthorId().equals(customer.getId()) && customer.getRole() != "admin") {
+            if (!existingPost.getAuthorId().equals(customer.getId()) && !Objects.equals(customer.getRole(), "admin")) {
                 return ResponseEntity.status(HttpStatus.FORBIDDEN)
                         .body("You are not authorized to delete this post");
             }

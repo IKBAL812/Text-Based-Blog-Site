@@ -16,7 +16,6 @@ export class LoginComponent implements OnInit {
   loginForm!: FormGroup;
   hidePassword = true;
 
-
   constructor(
     private fb: FormBuilder,
     private router: Router,
@@ -61,15 +60,15 @@ export class LoginComponent implements OnInit {
     });
   }
 
-  togglePasswordVisibility() {
-    this.hidePassword = !this.hidePassword;
-  }
-
   resetPassword() {
     const dialogRef = this.dialog.open(ForgotPasswordComponent, {
       width: '500px',
       height: '400px',// Increase the height of the dialog
       data: { email: this }
     });
+  }
+
+  togglePasswordVisibility() {
+    this.hidePassword = !this.hidePassword;
   }
 }

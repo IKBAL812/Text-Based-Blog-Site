@@ -35,7 +35,6 @@ public class CustomerServiceImpl implements UserDetailsService,CustomerService {
         Customer customer = customerRepository.findByEmail(email)
                 .orElseThrow(() -> new UsernameNotFoundException("User with that email does not exist"));
         return new User(customer.getEmail(), customer.getPassword(), Collections.emptyList());
-
     }
 
     public Customer getUserByEmail(String email) throws UsernameNotFoundException{

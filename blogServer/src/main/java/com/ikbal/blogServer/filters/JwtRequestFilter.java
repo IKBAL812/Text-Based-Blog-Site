@@ -25,7 +25,7 @@ public class JwtRequestFilter extends OncePerRequestFilter {
     private final JwtUtil jwtUtil;
 
     @Autowired
-    public JwtRequestFilter(@Lazy CustomerService customerService, JwtUtil jwtUtil) {//used lazy because it caused dependency circle
+    public JwtRequestFilter(CustomerService customerService, JwtUtil jwtUtil) {//used lazy because it caused dependency circle
         this.customerService = customerService;
         this.jwtUtil = jwtUtil;
     }
@@ -37,7 +37,7 @@ public class JwtRequestFilter extends OncePerRequestFilter {
         String username = null;
 
         if (authHeader != null && authHeader.startsWith("Bearer ")) {
-            token = authHeader.substring(7);//select the first 7 digits (the email)
+            token = authHeader.substring(7);
             username = jwtUtil.extractUsername(token);
         }
 

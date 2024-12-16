@@ -43,19 +43,6 @@ export class AppComponent implements OnInit {
     this.checkToken();
   }
 
-
-  logOut() {
-    this.cookieService.deleteAll();
-    this.router.navigateByUrl("/login").then(() => {
-      window.location.reload();
-    });
-  }
-  viewAll() {
-    this.router.navigateByUrl("/view-all").then(() => {
-      window.location.reload();
-    });
-  }
-
   checkToken() {
     const jwtToken = this.cookieService.get('jwt');
     if (!jwtToken) {
@@ -78,6 +65,12 @@ export class AppComponent implements OnInit {
     }
   }
 
+  viewAll() {
+    this.router.navigateByUrl("/view-all").then(() => {
+      window.location.reload();
+    });
+  }
+
   getUserByEmail() {
     this.jwtService.getUserByEmail(this.email).subscribe(res => {
       this.userData = res;
@@ -88,5 +81,12 @@ export class AppComponent implements OnInit {
 
   adminMenu() {
     this.router.navigateByUrl('/admin-menu');
+  }
+
+  logOut() {
+    this.cookieService.deleteAll();
+    this.router.navigateByUrl("/login").then(() => {
+      window.location.reload();
+    });
   }
 }

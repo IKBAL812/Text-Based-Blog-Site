@@ -44,6 +44,15 @@ export class ViewPostComponent {
       this.matSnackBar.open("Something went wrong!", "Ok")
     })
   }
+
+  getUserByEmail() {
+    this.jwtService.getUserByEmail(this.email).subscribe(res => {
+      this.userData = res;
+    }, error => {
+      this.matSnackBar.open("Something went wrong!", "Ok")
+    });
+  }
+
   //open the dialog for deleting a post
   openDeleteDialog(): void {
     const dialogRef = this.dialog.open(DialogWindowComponent, {
@@ -73,14 +82,6 @@ export class ViewPostComponent {
       console.error('Error decoding token:', error);
       return;
     }
-  }
-
-  getUserByEmail() {
-    this.jwtService.getUserByEmail(this.email).subscribe(res => {
-      this.userData = res;
-    }, error => {
-      this.matSnackBar.open("Something went wrong!", "Ok")
-    });
   }
 
 }
