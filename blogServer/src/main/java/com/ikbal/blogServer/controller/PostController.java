@@ -52,7 +52,7 @@ public class PostController {
     }
 
     @GetMapping("/{postId}")
-    public ResponseEntity<?> getPostById(@PathVariable Long postId) {
+    public ResponseEntity<?> getPostById(@PathVariable String postId) {
         try{
             Post post = postService.getPostById(postId);
             return ResponseEntity.ok(post);
@@ -62,7 +62,7 @@ public class PostController {
     }
 
     @PutMapping("/update/{postId}")
-    public ResponseEntity<?> updatePost(@PathVariable Long postId, @RequestBody Post post, @RequestHeader("Authorization") String token) {
+    public ResponseEntity<?> updatePost(@PathVariable String postId, @RequestBody Post post, @RequestHeader("Authorization") String token) {
         try {
             String jwtToken = token.replace("Bearer ", "");
             String email = jwtUtil.extractUsername(jwtToken);
@@ -85,7 +85,7 @@ public class PostController {
     }
 
     @DeleteMapping("/delete/{postId}")
-    public ResponseEntity<?> deletePost(@PathVariable Long postId, @RequestHeader("Authorization") String token) {
+    public ResponseEntity<?> deletePost(@PathVariable String postId, @RequestHeader("Authorization") String token) {
         try {
             String jwtToken = token.replace("Bearer ", "");
             String email = jwtUtil.extractUsername(jwtToken);

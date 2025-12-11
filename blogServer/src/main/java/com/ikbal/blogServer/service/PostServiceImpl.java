@@ -27,7 +27,7 @@ public class PostServiceImpl implements PostService {
         return postRepository.findAll();
     }
 
-    public Post getPostById(Long postId) {
+    public Post getPostById(String postId) {
         Optional<Post> optionalPost = postRepository.findById(postId);
         if(optionalPost.isPresent()) {
             Post post = optionalPost.get();
@@ -36,7 +36,7 @@ public class PostServiceImpl implements PostService {
             throw new EntityNotFoundException("Post Not Found");
         }
     }
-    public Post updatePost(Long postId,Post postDetails) {
+    public Post updatePost(String postId,Post postDetails) {
         Post post = postRepository.findById(postId)
                 .orElseThrow(() -> new EntityNotFoundException("Post not found with id " + postId));
         post.setName(postDetails.getName());
@@ -48,7 +48,7 @@ public class PostServiceImpl implements PostService {
         return postRepository.save(post);
     }
 
-    public void deletePost(Long postId) {
+    public void deletePost(String postId) {
         Optional<Post> optionalPost = postRepository.findById(postId);
         if(optionalPost.isPresent()) {
             Post post = optionalPost.get();

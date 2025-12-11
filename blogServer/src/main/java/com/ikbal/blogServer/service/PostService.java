@@ -10,9 +10,9 @@ public interface PostService {
 
     List<Post> getAllPosts();
 
-    Post getPostById(Long postId);
+    Post getPostById(String postId);
 
-    Post updatePost(Long postId,Post postDetails);
+    Post updatePost(String postId,Post postDetails);
 
-    void deletePost(Long postId);
+    void deletePost(String postId);
 }

@@ -3,19 +3,19 @@ package com.ikbal.blogServer.entity;
 
 import jakarta.persistence.*;
 import lombok.Data;
+import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.Document;
 
 //post entity for the database
-@Entity
 @Data
+@Document(collection = "posts")
 public class Post {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private String id;
 
     private String name;
 
-    @Column(length = 5000)
     private String content;
 
     private String author;
